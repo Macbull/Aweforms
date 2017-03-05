@@ -40,7 +40,7 @@
     
     
     
-//---------------------------------------Factory for authentication
+//---------------------------------------Factory for calling Form from proxy
     app.factory("form", ["$http",
         function($http) {
             return {
@@ -88,11 +88,25 @@
 
     
 //---------------------------------------Forms Controller    
-    app.controller("formsController", ["$scope", "Auth",
-        function($scope, Auth) {
-            var self = this;
-            self.a = "He;low wrld";
+    app.controller("formsController", ["$scope", "Auth","$location", "$firebaseArray",
+        function($scope, Auth, $location, $firebaseArray) {
             console.log("Forms Controller");
+            console.log(firebase.auth().currentUser.uid);
+            $scope.newurl = "";
+            var ref = firebase.database().ref().child("users").child(firebase.auth().currentUser.uid);
+            $scope.forms = $firebaseArray(ref);
+            console.log($scope.forms);
+            $scope.addForm = function(){
+//                $scope.forms.$add({name:$scope.newurl})
+                $scope.forms.$add({name:$scope.newurl}).then(function(ref) {
+                    $scope.goto(ref.key);
+//                    console.log(ref.key);
+                    });
+                console.log($scope.newurl);
+                                       };
+            $scope.goto = function(formid){
+                $location.path( "/form/"+formid );
+            }
         }
                                  ]);
     
@@ -106,7 +120,7 @@
 //---------------------------------------Form Controller    
     app.controller("formController", ["$scope", "Auth","$routeParams","form",
         function($scope, Auth, $routeParams, form) {
-            var res = form.funct1('http://stackoverflow.com/questions/26679110/ngroute-support-for-multiple-url-parameters');
+            var res = form.funct1('https://docs.google.com/forms/d/e/1FAIpQLSc3kpBw4nMA09iSG6pd_v93qo_vlt6iFPnwpfyFL_v-53harw/viewform?usp=sf_link#response=ACYDBNgdte8JqpsHqIZ8gOryObpeEZMaystZt5r2Wc-qNYNYw99SsXC_jMbkZg');
             console.log(res);
         }
                                  ]);

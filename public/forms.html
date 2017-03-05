@@ -1,5 +1,48 @@
 <div flex="">
 
-{{ctrl.a}}
+<md-card flex layout="row">
+<md-card-content flex layout="row" layout-align="center center">
+<!--  <div flex layout="row">-->
+        <md-input-container flex>
+            <label>Add Form</label>
+            <input flex ng-model="newurl">
+        </md-input-container> 
+        <md-button class="md-fab" aria-label="Eat cake" ng-click="addForm()">
+            <md-icon>add</md-icon>
+        </md-button>
+<!--  </div>-->
+    
+</md-card-content>
+</md-card>
+    
+  <pre>
+{{ obj | json }}
+  </pre>
+    
+    
+<md-card flex>
+
+    <md-toolbar layout="row" class="md-hue-1">
+      <div class="md-toolbar-tools">
+        <span>Forms</span>
+      </div>
+    </md-toolbar>
+
+    <md-card-content>
+      <md-list flex>
+        
+        
+        <md-list-item class="md-3-line" ng-repeat="form in forms" ng-click="goto(form.$id)">
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ form.name }}</h3>
+           
+          </div>
+        </md-list-item>
+          
+          
+      </md-list>
+    </md-card-content>
+  </md-card>
+    
 
 </div>
