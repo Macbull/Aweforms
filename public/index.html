@@ -5,6 +5,8 @@
     <title>Sample FirebaseUI App</title>
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-route.js"></script>
+
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
@@ -32,11 +34,9 @@
   <body ng-app="aweform">
     <div ng-controller="SampleCtrl">
     
-        <md-toolbar class=" md-hue-2">
+        <md-toolbar class="md-hue-1">
           <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
-              <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-            </md-button>
+
             <h2 md-truncate flex>Link to form Response</h2>
               <span></span>
               <div>
@@ -48,16 +48,16 @@
                 </div>
 
                 <div ng-hide="firebaseUser">
-<!--                    <p>Welcome, please sign in.</p>-->
                     <md-button class="md-icon-button" ng-click="signIn()" aria-label="More">
                       <i class="material-icons">lock_outline</i>
                     </md-button>
                 </div> 
               </div>
           </div>
-        </md-toolbar>
-        
-        
-</div>
+        </md-toolbar>      
+    </div>
+    <div ng-view></div>
+
+
   </body>
 </html>
