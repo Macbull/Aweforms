@@ -38,6 +38,31 @@
       }
     ]);
     
+    
+    
+//---------------------------------------Factory for authentication
+    app.factory("form", ["$http",
+        function($http) {
+            return {
+                funct1:function(url){
+                    $http({
+                      method: 'GET',
+                      url: 'http://127.0.0.1:5001/'+url
+                    }).then(function successCallback(response) {
+                        console.log(response);
+                        return response;
+                      }, function errorCallback(response) {
+                        console.log(response);
+                        return response;
+                      });
+                }
+            }
+        }]);
+    
+    
+    
+    
+    
 //---------------------------------------Login Controller    
     app.controller("SampleCtrl", ["$scope", "Auth",
         function($scope, Auth) {
@@ -67,7 +92,7 @@
         function($scope, Auth) {
             var self = this;
             self.a = "He;low wrld";
-            console.log("Form Controller")
+            console.log("Forms Controller");
         }
                                  ]);
     
@@ -79,9 +104,10 @@
     
     
 //---------------------------------------Form Controller    
-    app.controller("formController", ["$scope", "Auth",
-        function($scope, Auth) {
-            console.log("Form Controller")
+    app.controller("formController", ["$scope", "Auth","$routeParams","form",
+        function($scope, Auth, $routeParams, form) {
+            var res = form.funct1('http://stackoverflow.com/questions/26679110/ngroute-support-for-multiple-url-parameters');
+            console.log(res);
         }
                                  ]);
     
