@@ -45,16 +45,10 @@
         function($http) {
             return {
                 funct1:function(url){
-                    $http({
+                    return $http({
                       method: 'GET',
                       url: 'http://127.0.0.1:5001/'+url
-                    }).then(function successCallback(response) {
-                        console.log(response);
-                        return response;
-                      }, function errorCallback(response) {
-                        console.log(response);
-                        return response;
-                      });
+                    });
                 }
             }
         }]);
@@ -88,8 +82,8 @@
 
     
 //---------------------------------------Forms Controller    
-    app.controller("formsController", ["$scope", "Auth","$location", "$firebaseArray",
-        function($scope, Auth, $location, $firebaseArray) {
+    app.controller("formsController", ["$scope", "Auth","$location", "$firebaseArray", "form",
+        function($scope, Auth, $location, $firebaseArray, form) {
             console.log("Forms Controller");
             console.log(firebase.auth().currentUser.uid);
             $scope.newurl = "";
@@ -97,12 +91,15 @@
             $scope.forms = $firebaseArray(ref);
             console.log($scope.forms);
             $scope.addForm = function(){
-//                $scope.forms.$add({name:$scope.newurl})
-                $scope.forms.$add({name:$scope.newurl}).then(function(ref) {
-                    $scope.goto(ref.key);
-//                    console.log(ref.key);
-                    });
-                console.log($scope.newurl);
+                form.funct1($scope.newurl).then(function(htm){
+                    $scope.forms.$add({
+                        url : $scope.newurl,
+                        html : htm.data
+                    }).then(function(ref) {
+                        $scope.goto(ref.key);
+                        });
+                });
+                
                                        };
             $scope.goto = function(formid){
                 $location.path( "/form/"+formid );
