@@ -7,7 +7,7 @@
             storageBucket: "firepad-examples.appspot.com",
             messagingSenderId: "389100237294"
           };
-  
+
 //---------------------------------------Firebase and Angular app initialization
     firebase.initializeApp(config);
     var app = angular.module("aweform", ["firebase","ngMaterial","ngRoute"]);
@@ -29,17 +29,17 @@
         })
         .otherwise('/');
     }]);
-    
-    
+
+
 //---------------------------------------Factory for authentication
     app.factory("Auth", ["$firebaseAuth",
         function($firebaseAuth) {
         return $firebaseAuth();
       }
     ]);
-    
-    
-    
+
+
+
 //---------------------------------------Factory for calling Form from proxy
     app.factory("form", ["$http",
         function($http) {
@@ -52,12 +52,12 @@
                 }
             }
         }]);
-    
-    
-    
-    
-    
-//---------------------------------------Login Controller    
+
+
+
+
+
+//---------------------------------------Login Controller
     app.controller("SampleCtrl", ["$scope", "Auth",
         function($scope, Auth) {
             $scope.auth = Auth;
@@ -77,11 +77,11 @@
             });
         }
                                  ]);
-    
-    
 
-    
-//---------------------------------------Forms Controller    
+
+
+
+//---------------------------------------Forms Controller
     app.controller("formsController", ["$scope", "Auth","$location", "$firebaseArray", "form",
         function($scope, Auth, $location, $firebaseArray, form) {
             console.log("Forms Controller");
@@ -99,35 +99,39 @@
                         $scope.goto(ref.key);
                         });
                 });
-                
+
                                        };
             $scope.goto = function(formid){
                 $location.path( "/form/"+formid );
             }
         }
                                  ]);
-    
-    
-    
 
-   
 
-    
-    
-//---------------------------------------Form Controller    
+
+
+
+
+
+
+//---------------------------------------Form Controller
     app.controller("formController", ["$scope", "Auth","$routeParams","form",
         function($scope, Auth, $routeParams, form) {
-            var res = form.funct1('https://docs.google.com/forms/d/e/1FAIpQLSc3kpBw4nMA09iSG6pd_v93qo_vlt6iFPnwpfyFL_v-53harw/viewform?usp=sf_link#response=ACYDBNgdte8JqpsHqIZ8gOryObpeEZMaystZt5r2Wc-qNYNYw99SsXC_jMbkZg');
-            console.log(res);
-        }
+
+            document.getElementById('iframeID').onload = function() {
+        console.log("loaded");
+                var iframe = document.getElementById('iframeID').contentWindow.document.body.children;
+                console.log(iframe);
+            }
+            }
                                  ]);
-    
-    
-    
 
-   
 
-    
+
+
+
+
+
 
 
 
