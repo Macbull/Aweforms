@@ -17,15 +17,15 @@
   //---------------------------------------Ng-Routes
   app.config(['$routeProvider', function($routeProvider){
     $routeProvider.when('/', {
-      templateUrl: '/static/forms.html',
+      templateUrl: '/forms.html',
       controller: 'formsController',
       controllerAs: 'ctrl'
     })
     .when('/login',{
-      templateUrl: '/static/login.html'
+      templateUrl: '/login.html'
     })
     .when('/form/:param',{
-      templateUrl: '/static/form.html',
+      templateUrl: '/form.html',
       controller: 'formController',
       controllerAs: 'ctrl'
     })

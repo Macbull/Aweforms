@@ -6,7 +6,7 @@ logging.basicConfig(level=logging.INFO)
 LOG = logging.getLogger("aweform.py")
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 
 @app.route('/')
