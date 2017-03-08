@@ -1,4 +1,4 @@
-(function(){
+(function () {
   //---------------------------------------Firebase Config
   var config = {
     apiKey: "AIzaSyCJhESPCrF9Raleqw844UDdj9s0Bb5x-dQ",
@@ -59,10 +59,11 @@ function($http) {
 app.controller("SampleCtrl", ["$scope", "Auth",
 function($scope, Auth) {
   $scope.auth = Auth;
-  $scope.signIn = function() {
-    $scope.auth.$signInWithPopup("google").then(function(firebaseUser) {
+  $scope.signIn = function () {
+    $scope.auth.$signInWithPopup("google").then(function (firebaseUser) {
       console.log("Signed in as:", firebaseUser);
-    }).catch(function(error) {
+    })
+    .catch(function (error) {
       console.log("Authentication failed:", error);
     });
   };
@@ -78,12 +79,13 @@ function($scope, Auth) {
 
 
 //---------------------------------------Forms Controller
-app.controller("formsController", ["$scope", "Auth","$location", "$firebaseArray", "form",
+app.controller("formsController", ["$scope", "Auth", "$location", "$firebaseArray", "form",
 function($scope, Auth, $location, $firebaseArray, form) {
   console.log("Forms Controller");
   console.log(firebase.auth().currentUser.uid);
   $scope.newurl = "";
-  var ref = firebase.database().ref().child("users").child(firebase.auth().currentUser.uid);
+  var ref = firebase.database().ref().child("users")
+                    .child(firebase.auth().currentUser.uid);
   $scope.forms = $firebaseArray(ref);
   console.log($scope.forms);
   $scope.addForm = function(){
@@ -95,15 +97,12 @@ function($scope, Auth, $location, $firebaseArray, form) {
         $scope.goto(ref.key);
       });
     });
-
   };
   $scope.goto = function(formid){
     $location.path( "/form/"+formid );
   }
 }
 ]);
-
-
 //---------------------------------------Form Controller
 app.controller("formController", ["$scope", "Auth","$routeParams","form",
 function($scope, Auth, $routeParams, form) {
@@ -114,6 +113,4 @@ function($scope, Auth, $routeParams, form) {
   }
 }
 ]);
-
-
 }());
