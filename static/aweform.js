@@ -1,44 +1,25 @@
-(function () {
-  //---------------------------------------Firebase Config
-  var config = {
-    apiKey: "AIzaSyCJhESPCrF9Raleqw844UDdj9s0Bb5x-dQ",
-    authDomain: "firepad-examples.firebaseapp.com",
-    databaseURL: "https://firepad-examples.firebaseio.com",
-    storageBucket: "firepad-examples.appspot.com",
-    messagingSenderId: "389100237294"
-  };
+// ************DeadKittens
+
+//---------------------------------------Factory for Global variables
+  app.factory('Global', function() {
+    return {
+      url:null,
+      forms:null,
+      ref:null}
+    // return {
+    //   _url:funtion(){
+    //     return url;
+    //   },
+    //   _forms:funtion(){
+    //     return forms;
+    //   },
+    //   _ref:function(){
+    //     return ref;
+    //   }
+    // };
+  });
 
 
-  //---------------------------------------Firebase and Angular app initialization
-  firebase.initializeApp(config);
-  var app = angular.module("aweform", ["firebase","ngMaterial","ngRoute"]);
-
-
-  //---------------------------------------Ng-Routes
-  app.config(['$routeProvider', function($routeProvider){
-    $routeProvider.when('/', {
-      templateUrl: '/forms.html',
-      controller: 'formsController',
-      controllerAs: 'ctrl'
-    })
-    .when('/login',{
-      templateUrl: '/login.html'
-    })
-    .when('/form/:param',{
-      templateUrl: '/form.html',
-      controller: 'formController',
-      controllerAs: 'ctrl'
-    })
-    .otherwise('/');
-  }]);
-
-
-  //---------------------------------------Factory for authentication
-  app.factory("Auth", ["$firebaseAuth",
-  function($firebaseAuth) {
-    return $firebaseAuth();
-  }
-]);
 
 
 //---------------------------------------Factory for calling Form from proxy
@@ -55,42 +36,25 @@ function($http) {
 }]);
 
 
-//---------------------------------------Login Controller
-app.controller("SampleCtrl", ["$scope", "Auth",
-function($scope, Auth) {
-  $scope.auth = Auth;
-  $scope.signIn = function () {
-    $scope.auth.$signInWithPopup("google").then(function (firebaseUser) {
-      console.log("Signed in as:", firebaseUser);
-    })
-    .catch(function (error) {
-      console.log("Authentication failed:", error);
-    });
-  };
-  $scope.signOut = function() {
-    $scope.auth.$signOut();
-  };
-  // any time auth state changes, add the user data to scope
-  $scope.auth.$onAuthStateChanged(function(firebaseUser) {
-    $scope.firebaseUser = firebaseUser;
-  });
-}
-]);
-
 
 //---------------------------------------Forms Controller
-app.controller("formsController", ["$scope", "Auth", "$location", "$firebaseArray", "form",
-function($scope, Auth, $location, $firebaseArray, form) {
+app.controller("formsController", ["$scope", "$location", "$firebaseArray", "form", "Global", "currentAuth",
+function($scope, $location, $firebaseArray, form, Global, currentAuth) {
   console.log("Forms Controller");
-  console.log(firebase.auth().currentUser.uid);
+  console.log(currentAuth);
   $scope.newurl = "";
-  var ref = firebase.database().ref().child("users")
-                    .child(firebase.auth().currentUser.uid);
-  $scope.forms = $firebaseArray(ref);
-  console.log($scope.forms);
+  this.ref = Global.vars.ref;
+  this.forms = Global.vars.forms;
+
+  this.ref = firebase.database().ref().child("users")
+                    .child(currentAuth.uid);
+  console.log("going to get ref");
+  this.forms = $firebaseArray(this.ref);
+  console.log(this.forms);
+
   $scope.addForm = function(){
     form.funct1($scope.newurl).then(function(htm){
-      $scope.forms.$add({
+      this.forms.$add({
         url : $scope.newurl,
         html : htm.data
       }).then(function(ref) {
@@ -104,8 +68,11 @@ function($scope, Auth, $location, $firebaseArray, form) {
 }
 ]);
 //---------------------------------------Form Controller
-app.controller("formController", ["$scope", "Auth","$routeParams","form",
-function($scope, Auth, $routeParams, form) {
+app.controller("formController", ["$scope","$routeParams","form", "currentAuth", "Global",
+function($scope, $routeParams, form, currentAuth, Global) {
+  console.log(currentAuth);
+  this.url = Global.vars.url;
+  this.url="not none";
   document.getElementById('iframeID').onload = function() {
     console.log("loaded");
     var iframe = document.getElementById('iframeID').contentWindow.document.body.children;
