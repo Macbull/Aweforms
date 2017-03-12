@@ -9,7 +9,7 @@
   }
   //---------------------------------------Firebase and Angular app initialization
   firebase.initializeApp(config);
-  var app = angular.module("aweform", ["firebase","ngMaterial","app.login","app.routes","app.global","app.forms", "ngRoute"]);
+  var app = angular.module("aweform", ["firebase","ngMaterial","app.login","app.routes","app.global","app.forms", "ngRoute","ngAnimate"]);
 
   //---------------------------------------Theme
   app.config(function($mdThemingProvider) {

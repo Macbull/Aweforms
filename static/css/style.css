@@ -3,11 +3,10 @@
   top:0;
   z-index: 21;
   box-shadow: 0px 0px 4px grey;
-  opacity: 0.9;
-
+  opacity: 0.7;
 }
 .rest{
-  position: relative; top: 50px;
+  position: relative; top: 62px;
 }
 
 
