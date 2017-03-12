@@ -5,10 +5,4 @@ threadsafe: true
 handlers:
 - url: (/.*)
   script: aweform.app
-  secure: always
-
-libraries:
-- name: ssl
-  version: 2.7
-# - url: (/proxy/.*)
-#   script: aweform.app
+  # secure: always
