@@ -5,34 +5,22 @@
   .module('app.forms.controllers')
   .controller("formsCtrl", formsCtrl);
 
-  formsCtrl.$inject = ["$scope", "$location", "$firebaseArray", "Global", "currentAuth"];
+  formsCtrl.$inject = ["$scope", "$location", "Forms", "Global", "currentAuth"];
+
 
   /**
   * @namespace formsCtrl
   **/
-  function formsCtrl($scope, $location, $firebaseArray, Global, currentAuth) {
-    console.log("Forms Controller");
-    console.log(currentAuth);
-    $scope.newurl = "";
-    this.ref = Global.ref;
-    this.forms = Global.forms;
+  function formsCtrl($scope, $location, Forms, Global, currentAuth) {
+    var vm = this;
+    vm.newForm=null;
 
-    this.ref = firebase.database().ref().child("users")
-                      .child(currentAuth.uid);
-    console.log("going to get ref");
-    this.forms = $firebaseArray(this.ref);
-    console.log(this.forms);
+    vm.forms = Forms.getData(currentAuth);
 
     $scope.addForm = function(){
-      // form.funct1($scope.newurl).then(function(htm){
-      //   this.forms.$add({
-      //     url : $scope.newurl,
-      //     html : htm.data
-      //   }).then(function(ref) {
-      //     $scope.goto(ref.key);
-      //   });
-      // });
-      console.log("added");
+      // validate link
+      // get a promise from add, and redirect to the form/$id
+      Forms.addData(vm.newForm);
     };
     $scope.goto = function(formid){
       $location.path( "/form/"+formid );

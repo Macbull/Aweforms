@@ -13,7 +13,7 @@
           .when('/', {
             templateUrl: '/forms.html',
             controller: 'formsCtrl',
-            controllerAs: 'ctrl',
+            controllerAs: 'vm',
             resolve: {
               "currentAuth": ["Auth", function(Auth) {
                 return Auth.$requireSignIn();
@@ -23,7 +23,7 @@
           // .when('/form/:param',{
           //   templateUrl: '/form.html',
           //   controller: 'formController',
-          //   controllerAs: 'ctrl',
+          //   controllerAs: 'vm',
           //   resolve: {
           //     "currentAuth": ["Auth", function(Auth) {
           //       return Auth.$waitForSignIn();

@@ -5,30 +5,26 @@
   .module('app.login.controllers')
   .controller("loginCtrl", loginCtrl);
 
-  loginCtrl.$inject = ["$scope", "Auth", "$location", "Global"];
+  loginCtrl.$inject = ["$scope", "Auth", "$location", "Global", "Forms"];
 
   /**
   * @namespace loginCtrl
   **/
-  function loginCtrl($scope, Auth, $location, Global) {
+  function loginCtrl($scope, Auth, $location, Global, Forms) {
     $scope.auth = Auth;
     $scope.signIn = function () {
       $scope.auth.$signInWithPopup("google").then(function (firebaseUser) {
-        console.log("Signed in as:", firebaseUser);
       })
       .catch(function (error) {
         console.log("Authentication failed:", error);
       });
     };
     $scope.signOut = function() {
-      this.forms = Global.forms;
-      this.forms.$destroy();
-      $scope.auth.$signOut();
+        Forms.destroyData();
+        $scope.auth.$signOut();
     };
-    // any time auth state changes, add the user data to scope
     $scope.auth.$onAuthStateChanged(function(firebaseUser) {
       $scope.firebaseUser = firebaseUser;
-      console.log(firebaseUser);
       if (Global.url){
 
       }
