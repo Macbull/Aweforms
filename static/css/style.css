@@ -1,0 +1,46 @@
+[scroll] {
+  position:fixed;
+  top:0;
+  z-index: 21;
+  box-shadow: 0px 0px 4px grey;
+  opacity: 0.9;
+
+}
+.rest{
+  position: relative; top: 50px;
+}
+
+
+
+.logo1{
+  font-family: 'Dosis', sans-serif;
+  /*    font-weight: 400;*/
+  /*    font-style: normal;*/
+  font-size: 36px;
+  color: #505050;
+}
+.logo2{
+  font-family: 'Ubuntu', sans-serif;
+  /*    font-weight: 400;*/
+  /*    font-style: normal;*/
+  font-size: 28pt;
+  color: #505050;
+
+}
+.username{
+  font-family: 'Dosis', sans-serif;
+  vertical-align: middle;
+}
+
+.home-background{
+  background-image: url('/images/pattern.png');
+  background-repeat: repeat;
+  /*Set Temprary height of image */
+  min-height: 900px;
+}
+.circle-pic{
+  vertical-align:middle;
+  max-width:80%;
+  max-height:80%;
+  border-radius: 50%
+}

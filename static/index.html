@@ -26,6 +26,17 @@
       <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
+      <!--      My CSS-->
+      <link href="css/style.css" rel="stylesheet">
+
+
+      <!-- Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Dosis:600,700|Ubuntu:500,700" rel="stylesheet">
+
+
+
+
       <!--    My Javascripts  -->
       <script src="js/app.js"></script>
       <script src="js/app.routes.js"></script>
@@ -41,21 +52,24 @@
 
 
 
+
     </head>
     <body ng-app="aweform">
-      <div ng-controller="loginCtrl">
 
-          <md-toolbar  style="background-color: white;">
+          <md-toolbar ng-controller="loginCtrl" scroll style="background-color: white;">
             <div class="md-toolbar-tools">
 
-              <a href="#!/"><img src="images/logo.png" style="max-width:100%; max-height:100%;"></a>
+              <a href="#!/">
+                  <span class="logo2">&alpha;weforms</span>
+                <!-- <img src="images/logo.png" style="max-width:100%; max-height:100%;"> -->
+              </a>
                 <span flex></span>
 
                   <div class="md-raised" ng-show="firebaseUser" layout="row center" layout-align="end center">
 
 
                     <div>
-                      <img ng-click="signOut()"  ng-src="{{firebaseUser.photoURL}}" class="md-avatar" style=" vertical-align:middle max-width:80%; max-height:80%; border-radius: 50%"></a></div>
+                      <img ng-click="signOut()"  ng-src="{{firebaseUser.photoURL}}" class="md-avatar circle-pic"></a></div>
                       <span></span>
                       <div flex>Hello {{firebaseUser.displayName}}</div>
 
@@ -69,8 +83,8 @@
 
             </div>
           </md-toolbar>
-      </div>
-      <div ng-view></div>
+
+          <div class="rest" ng-view></div>
 
 
     </body>
