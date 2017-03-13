@@ -1,4 +1,5 @@
-from flask import Flask, Response
+from flask import Flask, Response, request, redirect
+from urlparse import urlparse, urlunparse
 import urllib2
 import logging
 import re
@@ -9,10 +10,19 @@ LOG = logging.getLogger("aweform.py")
 app = Flask(__name__, static_url_path='')
 
 
+@app.before_request
+def redirect_nonwww():
+    """Redirect non-www requests to www."""
+    urlparts = urlparse(request.url)
+    if urlparts.netloc not in ['www.aweforms.com', '']:
+        urlparts_list = list(urlparts)
+        urlparts_list[1] = 'www.aweforms.com'
+        return redirect(urlunparse(urlparts_list), code=301)
+
+
 @app.route('/')
 def index():
     '''Serve Static file index.html. Further routing will be done by ngRoute'''
-
     return app.send_static_file('index.html')
 
 @app.route('/forms/<path:url>')
