@@ -22,13 +22,15 @@
   font-family: 'Ubuntu', sans-serif;
   /*    font-weight: 400;*/
   /*    font-style: normal;*/
-  font-size: 28pt;
-  color: #505050;
+  font-size: 24pt;
+  color: #404040;
 
 }
 .username{
   font-family: 'Dosis', sans-serif;
   vertical-align: middle;
+  font-size: 20pt;
+
 }
 
 .home-background{
@@ -37,9 +39,11 @@
   /*Set Temprary height of image */
   min-height: 900px;
 }
+
 .circle-pic{
   vertical-align:middle;
-  max-width:80%;
-  max-height:80%;
-  border-radius: 50%
+  width:32px;
+  height:32px;
+  border-radius: 50%;
+  margin: 10px;
 }
