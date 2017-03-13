@@ -1,26 +1,23 @@
 <div flex="">
 
-<md-card flex layout="row">
-<md-card-content flex layout="row" layout-align="center center">
-<!--  <div flex layout="row">-->
-        <md-input-container flex>
-            <label>Add Form</label>
-            <input flex ng-model="vm.newForm">
-        </md-input-container>
-        <md-button class="md-fab" aria-label="Eat cake" ng-click="addForm()">
-            <md-icon>add</md-icon>
-        </md-button>
-<!--  </div>-->
+  <md-card flex layout="row">
+    <md-card-content flex class="[ng-Form: newForm;]" layout="row" layout-align="center center">
 
-</md-card-content>
-</md-card>
+      <md-input-container flex>
+        <label>Add Form</label>
+        <input flex name = "newUrl" ng-model="vm.newUrl"  ng-pattern="vm.googleformlink" >
+        <div class="invalid" ng-show="!newForm.newUrl.$valid">The link doesn't appear to be of a Google Form</div>
+      </md-input-container>
 
-  <pre>
-{{ obj | json }}
-  </pre>
+      <md-button class="md-fab" aria-label="Eat cake" ng-click="addForm()" ng-disabled="!(newForm.newUrl.$valid && vm.newUrl != '')">
+        <md-icon>add</md-icon>
+      </md-button>
+
+    </md-card-content>
+  </md-card>
 
 
-<md-card flex>
+  <md-card flex>
 
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
@@ -31,14 +28,13 @@
     <md-card-content>
       <md-list flex>
 
-
         <md-list-item class="md-3-line" ng-repeat="form in vm.forms" ng-click="goto(form.$id)">
+
           <div class="md-list-item-text" layout="column">
             <h3>{{ form.name }}</h3>
-
           </div>
-        </md-list-item>
 
+        </md-list-item>
 
       </md-list>
     </md-card-content>

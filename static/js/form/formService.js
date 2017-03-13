@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-  .module('app.forms.services')
-  .factory("Forms", Forms);
+  .module('app.form.services')
+  .factory("Form", Form);
 
-  Forms.$inject = ["$firebaseArray"];
+  Form.$inject = ["$firebaseArray"];
 
-  function Forms($firebaseArray) {
+  function Form($firebaseArray) {
     var data=null;
 
     var service = {

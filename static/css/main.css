@@ -9,6 +9,14 @@
   position: relative; top: 62px;
 }
 
+.invalid{
+  color: #db4437;  
+  font-weight: 400;
+  font-stretch: normal;
+  font-size: 16px;
+  line-height: 135%;
+
+}
 
 
 .logo1{
