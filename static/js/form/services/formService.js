@@ -13,18 +13,22 @@
 
     var service = {
       getData: getData,
-      destroyData: destroyData,
-      addData: addData
+
+      addData: addData,
+      destroyData: destroyData
     };
     return service;
 
     function getData(currentAuth, formid){
-      if (!data)
-      {
-        ref = firebase.database().ref().child("users").child(currentAuth.uid).child(formid);
-        data = $firebaseObject(ref);
-      }
+      ref = firebase.database().ref().child("users").child(currentAuth.uid).child(formid);
+      data = $firebaseObject(ref);
       return data;
+    }
+
+
+
+    function addData(newData){
+      // add data
     }
 
     function destroyData(){
@@ -34,11 +38,6 @@
         ref = null;
       }
     }
-
-    function addData(newData){
-      // add data
-    }
-
   }
 
 

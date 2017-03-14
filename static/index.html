@@ -42,32 +42,36 @@
       <!--    My Javascripts  -->
       <script src="js/app.js"></script>
       <script src="js/app.routes.js"></script>
+      <script src="js/app.mdTheme.js"></script>
+      <script src="js/app.routeChange.js"></script>
       <script src="js/app.globalService.js"></script>
+      <script src="js/app.angularFireDecorator.js"></script>
+
+
 
       <script src="js/login/login.module.js"></script>
-      <script src="js/login/loginController.js"></script>
-      <script src="js/login/loginService.js"></script>
+      <script src="js/login/controllers/loginController.js"></script>
+      <script src="js/login/services/loginService.js"></script>
 
       <script src="js/forms/forms.module.js"></script>
       <script src="js/forms/controllers/formsController.js"></script>
       <script src="js/forms/services/formsService.js"></script>
 
       <script src="js/form/form.module.js"></script>
-      <script src="js/form/formController.js"></script>
-      <script src="js/form/formService.js"></script>
+      <script src="js/form/controllers/formController.js"></script>
+      <script src="js/form/services/formService.js"></script>
 
 
 
 
     </head>
-    <body ng-app="aweform">
+    <body ng-app="app">
 
           <md-toolbar ng-controller="loginCtrl" scroll style="background-color: white;">
             <div class="md-toolbar-tools">
 
               <a href="#!/">
                   <span class="logo2">&alpha;weforms</span>
-                <!-- <img src="images/logo.png" style="max-width:100%; max-height:100%;"> -->
               </a>
                 <span flex></span>
 

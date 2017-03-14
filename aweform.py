@@ -10,14 +10,14 @@ LOG = logging.getLogger("aweform.py")
 app = Flask(__name__, static_url_path='')
 
 
-@app.before_request
-def redirect_nonwww():
-    """Redirect non-www requests to www."""
-    urlparts = urlparse(request.url)
-    if urlparts.netloc not in ['www.aweforms.com', '']:
-        urlparts_list = list(urlparts)
-        urlparts_list[1] = 'www.aweforms.com'
-        return redirect(urlunparse(urlparts_list), code=301)
+# @app.before_request
+# def redirect_nonwww():
+#     """Redirect non-www requests to www."""
+#     urlparts = urlparse(request.url)
+#     if urlparts.netloc not in ['www.aweforms.com', '']:
+#         urlparts_list = list(urlparts)
+#         urlparts_list[1] = 'www.aweforms.com'
+#         return redirect(urlunparse(urlparts_list), code=301)
 
 @app.route('/')
 def index():
@@ -41,7 +41,7 @@ def scripts(url):
     mod_page = re.sub(r'https://(?!(fonts.googleapis)|(docs.google))',
                   '/proxy/', page.read(), flags=re.IGNORECASE)
     return Response(mod_page, content_type=page.headers['content-type'])
-    
+
 @app.route('/.well-known/acme-challenge/ptOx49Nh3FVv6_Rb6hZoQERCWq6jon6yAZjYOQ1lo_A')
 def ssl_challenge():
     '''Serve Static file index.html. Further routing will be done by ngRoute'''
