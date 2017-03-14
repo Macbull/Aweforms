@@ -1,3 +1,11 @@
+html, body{
+  min-height: 100%
+}
+
+iframe{
+  min-height: 90%
+}
+
 [scroll] {
   position:fixed;
   top:0;
@@ -5,19 +13,6 @@
   box-shadow: 0px 0px 4px grey;
   opacity: 0.7;
 }
-.rest{
-  position: relative; top: 62px;
-}
-
-.invalid{
-  color: #db4437;  
-  font-weight: 400;
-  font-stretch: normal;
-  font-size: 16px;
-  line-height: 135%;
-
-}
-
 
 .logo1{
   font-family: 'Dosis', sans-serif;
@@ -26,6 +21,7 @@
   font-size: 36px;
   color: #505050;
 }
+
 .logo2{
   font-family: 'Ubuntu', sans-serif;
   /*    font-weight: 400;*/
@@ -34,11 +30,23 @@
   color: #404040;
 
 }
+
 .username{
   font-family: 'Dosis', sans-serif;
   vertical-align: middle;
   font-size: 20pt;
 
+}
+.circle-pic{
+  vertical-align:middle;
+  width:32px;
+  height:32px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.rest{
+  position: relative; top: 62px;
 }
 
 .home-background{
@@ -48,10 +56,24 @@
   min-height: 900px;
 }
 
-.circle-pic{
-  vertical-align:middle;
-  width:32px;
-  height:32px;
-  border-radius: 50%;
-  margin: 10px;
+.invalid{
+  color: #db4437;
+  font-weight: 400;
+  font-stretch: normal;
+  font-size: 16px;
+  line-height: 135%;
+}
+
+.formsCard{
+  max-width: 208px;
+  max-height: 224px;
+  min-height: 224px;
+  min-width: 208px;
+}
+
+.thumbnail{
+  max-width: 208px;
+  max-height: 156px;
+  min-height: 156px;
+  min-width: 208px;
 }
