@@ -18,12 +18,13 @@
 
     vm.forms = Forms.getData(currentAuth);
 
-    $scope.addForm = function(){
-      // validate link
-      // get a promise from add, and redirect to the form/$id
-      Forms.addData(vm.newUrl);
+    vm.addForm = function(){
+      var path = vm.newUrl.match("https://docs.google.com(.*)")[1];
+      Forms.addData(path).then(function(data){
+        vm.goto(data.path.o[2]);
+      });
     };
-    $scope.goto = function(formid){
+    vm.goto = function(formid){
       $location.path( "/form/"+formid );
     }
   }

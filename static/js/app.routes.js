@@ -20,16 +20,16 @@
               }]
             }
           })
-          // .when('/form/:param',{
-          //   templateUrl: '/form.html',
-          //   controller: 'formController',
-          //   controllerAs: 'vm',
-          //   resolve: {
-          //     "currentAuth": ["Auth", function(Auth) {
-          //       return Auth.$waitForSignIn();
-          //     }]
-          //   }
-          // })
+          .when('/form/:param',{
+            templateUrl: '/form.html',
+            controller: 'formCtrl',
+            controllerAs: 'vm',
+            resolve: {
+              "currentAuth": ["Auth", function(Auth) {
+                return Auth.$waitForSignIn();
+              }]
+            }
+          })
           .otherwise('/');
 }
 

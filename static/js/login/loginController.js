@@ -5,12 +5,12 @@
   .module('app.login.controllers')
   .controller("loginCtrl", loginCtrl);
 
-  loginCtrl.$inject = ["$scope", "Auth", "$location", "Global", "Forms"];
+  loginCtrl.$inject = ["$scope", "Auth", "$location", "Global", "Forms", "Form"];
 
   /**
   * @namespace loginCtrl
   **/
-  function loginCtrl($scope, Auth, $location, Global, Forms) {
+  function loginCtrl($scope, Auth, $location, Global, Forms, Form) {
     $scope.auth = Auth;
     $scope.signIn = function () {
       $scope.auth.$signInWithPopup("google").then(function (firebaseUser) {
@@ -21,6 +21,7 @@
     };
     $scope.signOut = function() {
         Forms.destroyData();
+        Form.destroyData();
         $scope.auth.$signOut();
     };
     $scope.auth.$onAuthStateChanged(function(firebaseUser) {

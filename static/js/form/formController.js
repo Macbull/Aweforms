@@ -5,26 +5,17 @@
   .module('app.form.controllers')
   .controller("formCtrl", formCtrl);
 
-  formCtrl.$inject = ["$scope", "$location", "Form", "Global", "currentAuth"];
+  formCtrl.$inject = ["$scope", "$location", "Form", "Global", "currentAuth", "$routeParams"];
 
 
   /**
   * @namespace formCtrl
   **/
-  function formCtrl($scope, $location, Form, Global, currentAuth) {
+  function formCtrl($scope, $location, Form, Global, currentAuth, $routeParams) {
     var vm = this;
     vm.newForm=null;
+    vm.form = Form.getData(currentAuth, $routeParams.param);
 
-    vm.form = Form.getData(currentAuth);
-
-    $scope.addForm = function(){
-      // validate link
-      // get a promise from add, and redirect to the form/$id
-      Form.addData(vm.newForm);
-    };
-    $scope.goto = function(formid){
-      $location.path( "/form/"+formid );
-    }
   }
 
 }());

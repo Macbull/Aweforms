@@ -35,7 +35,7 @@
     }
 
     function addData(newData){
-      data.$add({
+      return data.$add({
         url : newData,
         image : 'formThumbnails/placeholder.png'
       })

@@ -5,10 +5,11 @@
   .module('app.form.services')
   .factory("Form", Form);
 
-  Form.$inject = ["$firebaseArray"];
+  Form.$inject = ["$firebaseObject"];
 
-  function Form($firebaseArray) {
+  function Form($firebaseObject) {
     var data=null;
+    var ref=null;
 
     var service = {
       getData: getData,
@@ -17,11 +18,11 @@
     };
     return service;
 
-    function getData(currentAuth){
+    function getData(currentAuth, formid){
       if (!data)
       {
-        var ref = firebase.database().ref().child("users").child(currentAuth.uid);
-        data = $firebaseArray(ref);
+        ref = firebase.database().ref().child("users").child(currentAuth.uid).child(formid);
+        data = $firebaseObject(ref);
       }
       return data;
     }
@@ -30,6 +31,7 @@
       if (data){
         data.$destroy();
         data = null;
+        ref = null;
       }
     }
 

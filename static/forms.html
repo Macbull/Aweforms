@@ -1,6 +1,6 @@
-<div flex="">
+<div  flex="100" layout="row" layout-wrap  layout-align="center start">
 
-  <md-card flex layout="row">
+  <div flex="60" layout="row">
     <md-card-content flex class="[ng-Form: newForm;]" layout="row" layout-align="center center">
 
       <md-input-container flex>
@@ -9,36 +9,29 @@
         <div class="invalid" ng-show="!newForm.newUrl.$valid">The link doesn't appear to be of a Google Form</div>
       </md-input-container>
 
-      <md-button class="md-fab" aria-label="Eat cake" ng-click="addForm()" ng-disabled="!(newForm.newUrl.$valid && vm.newUrl != '')">
+      <md-button class="md-fab" aria-label="Eat cake" ng-click="vm.addForm()" ng-disabled="!(newForm.newUrl.$valid && vm.newUrl != '')">
         <md-icon>add</md-icon>
       </md-button>
 
     </md-card-content>
-  </md-card>
+  </div>
 
 
-  <md-card flex>
 
-    <md-toolbar layout="row">
-      <div class="md-toolbar-tools">
-        <span>Forms</span>
-      </div>
-    </md-toolbar>
+  <div flex="80" layout="row" layout-wrap >
+    <div  ng-repeat="form in vm.forms" class="md-padding" layout-align="center">            
+      <md-card class="formsCard" ng-click="vm.goto(form.$id)">
+        <img firebase-src="{{form.image}}" class="md-card-image thumbnail" alt="Washed Out">
+        <md-card-actions layout="row" layout-align="end center">
+          {{form.name}}
+          <md-button class="md-icon-button" aria-label="Share">
+            <md-icon>add</md-icon>
+          </md-button>
+        </md-card-actions><span flex></span>
+      </md-card>
+    </div>
 
-    <md-card-content>
-      <md-list flex>
-
-        <md-list-item class="md-3-line" ng-repeat="form in vm.forms" ng-click="goto(form.$id)">
-
-          <div class="md-list-item-text" layout="column">
-            <h3>{{ form.name }}</h3>
-          </div>
-
-        </md-list-item>
-
-      </md-list>
-    </md-card-content>
-  </md-card>
+  </div>
 
 
 </div>
