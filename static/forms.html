@@ -16,17 +16,15 @@
     </md-card-content>
   </div>
 
-
-
   <div flex="80" layout="row" layout-wrap >
-    <div  ng-repeat="form in vm.forms" class="md-padding" layout-align="center">            
+    <div  ng-repeat="form in vm.forms" class="md-padding" layout-align="center">
       <md-card class="formsCard" ng-click="vm.goto(form.$id)">
-        <img firebase-src="{{form.image}}" class="md-card-image thumbnail" alt="Washed Out">
-        <md-card-actions layout="row" layout-align="end center">
-          {{form.name}}
-          <md-button class="md-icon-button" aria-label="Share">
+        <img ng-src="{{form.image}}" class="md-card-image thumbnail" alt="Washed Out">
+        <md-card-actions layout="row" layout-align="center center">
+          <div class="formName">{{form.name}}</div>
+          <!-- <md-button class="md-icon-button" aria-label="Share">
             <md-icon>add</md-icon>
-          </md-button>
+          </md-button> -->
         </md-card-actions><span flex></span>
       </md-card>
     </div>
