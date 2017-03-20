@@ -15,7 +15,7 @@ iframe{
 }
 
 .logo_image{
-  max-height: 50px;
+  max-height: 40px;
   width: auto;
 }
 
@@ -71,9 +71,14 @@ iframe{
 
 .formsCard{
   max-width: 208px;
-  max-height: 224px;
   min-height: 224px;
   min-width: 208px;
+}
+
+.formName{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .thumbnail{

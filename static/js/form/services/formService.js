@@ -13,9 +13,9 @@
 
     var service = {
       getData: getData,
-
       addData: addData,
-      destroyData: destroyData
+      destroyData: destroyData,
+      getImageUrl: getImageUrl
     };
     return service;
 
@@ -37,6 +37,11 @@
         data = null;
         ref = null;
       }
+    }
+
+    function getImageUrl(url){
+      var parts = url.match("(.*)=");
+      return parts[1]+'=w208-h156-p';
     }
   }
 
